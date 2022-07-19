@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.5 on win32)" generated="20220715 23:43:22.858" rpa="false" schemaversion="3">
+<suite id="s1" name="myLibrary" source="C:\CursoUdemy\RobotFramework\MyCustomLibraries\myLibrary.robot">
+<test id="s1-t1" name="Teste de conversão de string para HASH sha256" line="5">
+<kw name="Converter &quot;Estou ficando ninja em Robot Framework!!&quot; para sha256" sourcename="Converter &quot;${CONTEUDO}&quot; para sha256">
+<kw name="Gerar Hash" library="geradorHash">
+<var>${CONTEUDO_HASH}</var>
+<arg>${CONTEUDO}</arg>
+<msg timestamp="20220715 23:43:23.138" level="INFO">Conteúdo: Estou ficando ninja em Robot Framework!!
+Hash gerado: 6526496e1589bb11988c5fd1051d8927a1160b1c3da51ca93ff6e2eab6ecfa38</msg>
+<msg timestamp="20220715 23:43:23.139" level="INFO">${CONTEUDO_HASH} = 6526496e1589bb11988c5fd1051d8927a1160b1c3da51ca93ff6e2eab6ecfa38</msg>
+<status status="PASS" starttime="20220715 23:43:23.051" endtime="20220715 23:43:23.139"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${CONTEUDO_HASH}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 23:43:23.139" level="INFO">6526496e1589bb11988c5fd1051d8927a1160b1c3da51ca93ff6e2eab6ecfa38</msg>
+<status status="PASS" starttime="20220715 23:43:23.139" endtime="20220715 23:43:23.139"/>
+</kw>
+<status status="PASS" starttime="20220715 23:43:23.050" endtime="20220715 23:43:23.140"/>
+</kw>
+<status status="PASS" starttime="20220715 23:43:23.038" endtime="20220715 23:43:23.155"/>
+</test>
+<test id="s1-t2" name="Teste de conversão de arquivo para HASH sha256" line="8">
+<kw name="Converter o arquivo &quot;arquivo_PDF.pdf&quot; para sha256" sourcename="Converter o arquivo &quot;${FILE}&quot; para sha256">
+<kw name="Gerar Hash Arquivo" library="geradorHash">
+<var>${CONTEUDO_HASH}</var>
+<arg>./${FILE}</arg>
+<msg timestamp="20220715 23:43:23.160" level="INFO">Arquivo: ./arquivo_PDF.pdf
+Hash gerado: d9021489da6cd18be2f0954475524f1c2d37628e127a1e23ee9941e133dcbc7f</msg>
+<msg timestamp="20220715 23:43:23.160" level="INFO">${CONTEUDO_HASH} = d9021489da6cd18be2f0954475524f1c2d37628e127a1e23ee9941e133dcbc7f</msg>
+<status status="PASS" starttime="20220715 23:43:23.158" endtime="20220715 23:43:23.160"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${CONTEUDO_HASH}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 23:43:23.162" level="INFO">d9021489da6cd18be2f0954475524f1c2d37628e127a1e23ee9941e133dcbc7f</msg>
+<status status="PASS" starttime="20220715 23:43:23.160" endtime="20220715 23:43:23.162"/>
+</kw>
+<status status="PASS" starttime="20220715 23:43:23.157" endtime="20220715 23:43:23.162"/>
+</kw>
+<status status="PASS" starttime="20220715 23:43:23.156" endtime="20220715 23:43:23.168"/>
+</test>
+<status status="PASS" starttime="20220715 23:43:22.870" endtime="20220715 23:43:23.169"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="myLibrary">myLibrary</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

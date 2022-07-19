@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.5 on win32)" generated="20220715 21:39:19.472" rpa="false" schemaversion="3">
+<suite id="s1" name="Process" source="C:\CursoUdemy\RobotFramework\Process\process.robot">
+<test id="s1-t1" name="Exemplo 01: Abrindo programas" line="6">
+<kw name="Abra e feche o Notepad">
+<kw name="Start Process" library="Process">
+<var>${MEU_PROCESSO}</var>
+<arg>C:\\WINDOWS\\system32\\notepad.exe</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20220715 21:39:19.534" level="INFO">Starting process:
+C:\WINDOWS\system32\notepad.exe</msg>
+<msg timestamp="20220715 21:39:19.540" level="INFO">${MEU_PROCESSO} = &lt;Popen: returncode: None args: ['C:\\WINDOWS\\system32\\notepad.exe']&gt;</msg>
+<status status="PASS" starttime="20220715 21:39:19.534" endtime="20220715 21:39:19.540"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220715 21:39:22.547" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20220715 21:39:19.540" endtime="20220715 21:39:22.548"/>
+</kw>
+<kw name="Terminate Process" library="Process">
+<arg>${MEU_PROCESSO}</arg>
+<arg>kill=True</arg>
+<doc>Stops the process gracefully or forcefully.</doc>
+<msg timestamp="20220715 21:39:22.548" level="INFO">Forcefully killing process.</msg>
+<msg timestamp="20220715 21:39:22.669" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20220715 21:39:22.548" endtime="20220715 21:39:22.669"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:19.534" endtime="20220715 21:39:22.669"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:19.533" endtime="20220715 21:39:22.682"/>
+</test>
+<test id="s1-t2" name="Exemplo 02: Executando e aguardando scripts/programas" line="9">
+<kw name="Execute um script e aguarde ele finalizar com sucesso">
+<kw name="Run Process" library="Process">
+<var>${MEU_PROCESSO}</var>
+<arg>python</arg>
+<arg>hello_world.py</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20220715 21:39:22.683" level="INFO">Starting process:
+python hello_world.py</msg>
+<msg timestamp="20220715 21:39:22.715" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20220715 21:39:27.831" level="INFO">Process completed.</msg>
+<msg timestamp="20220715 21:39:27.831" level="INFO">${MEU_PROCESSO} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20220715 21:39:22.683" endtime="20220715 21:39:27.831"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Resultado da execução (sucesso/falha): ${MEU_PROCESSO.rc}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.832" level="INFO">Resultado da execução (sucesso/falha): 0</msg>
+<status status="PASS" starttime="20220715 21:39:27.831" endtime="20220715 21:39:27.832"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Saída da execução: ${MEU_PROCESSO.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.833" level="INFO">Saída da execução: Hello Robotizador!!!
+Fechando em 5 segundos...
+1
+2
+3
+4
+5</msg>
+<status status="PASS" starttime="20220715 21:39:27.832" endtime="20220715 21:39:27.833"/>
+</kw>
+<kw name="Verifica sucesso na execução do processo">
+<arg>${MEU_PROCESSO}</arg>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Should Be Equal As Integers</arg>
+<arg>${PROCESSO.rc}</arg>
+<arg>0</arg>
+<arg>msg=ATENÇÃO! O seu processo não executou com sucesso</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${PROCESSO.rc}</arg>
+<arg>0</arg>
+<arg>msg=ATENÇÃO! O seu processo não executou com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220715 21:39:27.834" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20220715 21:39:27.833" endtime="20220715 21:39:27.834"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:27.833" endtime="20220715 21:39:27.834"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${PROCESSO.rc}!=0</arg>
+<arg>Log</arg>
+<arg>FALHA OCORRIDA: "${PROCESSO.stderr}"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20220715 21:39:27.834" endtime="20220715 21:39:27.835"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:27.833" endtime="20220715 21:39:27.835"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:22.683" endtime="20220715 21:39:27.835"/>
+</kw>
+<kw name="Execute um script e aguarde ele finalizar com falha">
+<kw name="Run Process" library="Process">
+<var>${MEU_PROCESSO}</var>
+<arg>python</arg>
+<arg>hello_world_fail.py</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20220715 21:39:27.836" level="INFO">Starting process:
+python hello_world_fail.py</msg>
+<msg timestamp="20220715 21:39:27.851" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20220715 21:39:27.908" level="INFO">Process completed.</msg>
+<msg timestamp="20220715 21:39:27.908" level="INFO">${MEU_PROCESSO} = &lt;result object with rc 1&gt;</msg>
+<status status="PASS" starttime="20220715 21:39:27.836" endtime="20220715 21:39:27.908"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Resultado da execução (sucesso/falha): ${MEU_PROCESSO.rc}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.909" level="INFO">Resultado da execução (sucesso/falha): 1</msg>
+<status status="PASS" starttime="20220715 21:39:27.908" endtime="20220715 21:39:27.909"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Saída da execução: ${MEU_PROCESSO.stdout}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.915" level="INFO">Saída da execução: Hello Robotizador!!!
+Teste de execuþÒo de processo com erro!!!!</msg>
+<status status="PASS" starttime="20220715 21:39:27.909" endtime="20220715 21:39:27.915"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Falha da execução: ${MEU_PROCESSO.stderr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.915" level="INFO">Falha da execução: FAIL: Erro proposital!!!</msg>
+<status status="PASS" starttime="20220715 21:39:27.915" endtime="20220715 21:39:27.915"/>
+</kw>
+<kw name="Verifica sucesso na execução do processo">
+<arg>${MEU_PROCESSO}</arg>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Should Be Equal As Integers</arg>
+<arg>${PROCESSO.rc}</arg>
+<arg>0</arg>
+<arg>msg=ATENÇÃO! O seu processo não executou com sucesso</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${PROCESSO.rc}</arg>
+<arg>0</arg>
+<arg>msg=ATENÇÃO! O seu processo não executou com sucesso</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220715 21:39:27.916" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20220715 21:39:27.917" level="FAIL">ATENÇÃO! O seu processo não executou com sucesso: 1 != 0</msg>
+<status status="FAIL" starttime="20220715 21:39:27.916" endtime="20220715 21:39:27.917"/>
+</kw>
+<status status="FAIL" starttime="20220715 21:39:27.916" endtime="20220715 21:39:27.917"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${PROCESSO.rc}!=0</arg>
+<arg>Log</arg>
+<arg>FALHA OCORRIDA: "${PROCESSO.stderr}"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>FALHA OCORRIDA: "${PROCESSO.stderr}"</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20220715 21:39:27.919" level="INFO">FALHA OCORRIDA: "FAIL: Erro proposital!!!"</msg>
+<status status="PASS" starttime="20220715 21:39:27.918" endtime="20220715 21:39:27.919"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:27.918" endtime="20220715 21:39:27.919"/>
+</kw>
+<status status="FAIL" starttime="20220715 21:39:27.915" endtime="20220715 21:39:27.919"/>
+</kw>
+<status status="FAIL" starttime="20220715 21:39:27.836" endtime="20220715 21:39:27.920"/>
+</kw>
+<status status="FAIL" starttime="20220715 21:39:22.683" endtime="20220715 21:39:27.922">ATENÇÃO! O seu processo não executou com sucesso: 1 != 0</status>
+</test>
+<test id="s1-t3" name="Exemplo 03: Execute comandos de prompt" line="13">
+<kw name="Executando comandos diversos de prompt">
+<kw name="Run Process" library="Process">
+<arg>mkdir robot_teste</arg>
+<arg>cwd=C:\\CursoUdemy\\RobotFramework\\Process</arg>
+<arg>shell=True</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20220715 21:39:27.923" level="INFO">Starting process:
+mkdir robot_teste</msg>
+<msg timestamp="20220715 21:39:27.937" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20220715 21:39:27.974" level="INFO">Process completed.</msg>
+<status status="PASS" starttime="20220715 21:39:27.923" endtime="20220715 21:39:27.974"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:27.923" endtime="20220715 21:39:27.974"/>
+</kw>
+<status status="PASS" starttime="20220715 21:39:27.922" endtime="20220715 21:39:27.975"/>
+</test>
+<doc>http://robotframework.org/robotframework/latest/libraries/Process.html</doc>
+<status status="FAIL" starttime="20220715 21:39:19.474" endtime="20220715 21:39:27.976"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="1" skip="0" id="s1" name="Process">Process</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
